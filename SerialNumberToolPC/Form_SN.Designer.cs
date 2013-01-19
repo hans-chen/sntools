@@ -51,10 +51,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
-<<<<<<< HEAD
-=======
-            this.textBox1 = new System.Windows.Forms.TextBox();
->>>>>>> add new edit box to accept pasted serial numbers
             ((System.ComponentModel.ISupportInitialize)(this.DG_SNList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -83,20 +79,12 @@
             this.Col_Year,
             this.Col_Month,
             this.Col_Configuration});
-<<<<<<< HEAD
             this.DG_SNList.Location = new System.Drawing.Point(198, 25);
-=======
-            this.DG_SNList.Location = new System.Drawing.Point(470, 56);
->>>>>>> add new edit box to accept pasted serial numbers
             this.DG_SNList.Name = "DG_SNList";
             this.DG_SNList.ReadOnly = true;
             this.DG_SNList.RowTemplate.Height = 23;
             this.DG_SNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-<<<<<<< HEAD
             this.DG_SNList.Size = new System.Drawing.Size(639, 508);
-=======
-            this.DG_SNList.Size = new System.Drawing.Size(349, 603);
->>>>>>> add new edit box to accept pasted serial numbers
             this.DG_SNList.TabIndex = 3;
             this.DG_SNList.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DG_SNList_UDRow);
             // 
@@ -148,11 +136,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(926, 543);
-=======
-            this.label1.Location = new System.Drawing.Point(1094, 649);
->>>>>>> add new edit box to accept pasted serial numbers
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 13);
             this.label1.TabIndex = 5;
@@ -222,15 +206,9 @@
             this.groupBox1.Controls.Add(this.B_Open);
             this.groupBox1.Controls.Add(this.B_PrevFile);
             this.groupBox1.Controls.Add(this.B_NextFile);
-<<<<<<< HEAD
             this.groupBox1.Location = new System.Drawing.Point(843, 373);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(379, 160);
-=======
-            this.groupBox1.Location = new System.Drawing.Point(848, 373);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(374, 160);
->>>>>>> add new edit box to accept pasted serial numbers
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PC File Operation";
@@ -313,27 +291,11 @@
             this.radioButton6.Text = "Type";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
-<<<<<<< HEAD
-=======
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(217, 56);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 603);
-            this.textBox1.TabIndex = 16;
-            // 
->>>>>>> add new edit box to accept pasted serial numbers
             // F_SN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1234, 561);
-=======
-            this.ClientSize = new System.Drawing.Size(1234, 671);
-            this.Controls.Add(this.textBox1);
->>>>>>> add new edit box to accept pasted serial numbers
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -382,10 +344,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton6;
-<<<<<<< HEAD
-=======
-        private System.Windows.Forms.TextBox textBox1;
->>>>>>> add new edit box to accept pasted serial numbers
     }
 }
 
