@@ -51,6 +51,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.T_SNinput = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DG_SNList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -79,12 +80,12 @@
             this.Col_Year,
             this.Col_Month,
             this.Col_Configuration});
-            this.DG_SNList.Location = new System.Drawing.Point(198, 25);
+            this.DG_SNList.Location = new System.Drawing.Point(198, 311);
             this.DG_SNList.Name = "DG_SNList";
             this.DG_SNList.ReadOnly = true;
             this.DG_SNList.RowTemplate.Height = 23;
             this.DG_SNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DG_SNList.Size = new System.Drawing.Size(639, 508);
+            this.DG_SNList.Size = new System.Drawing.Size(639, 222);
             this.DG_SNList.TabIndex = 3;
             this.DG_SNList.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DG_SNList_UDRow);
             // 
@@ -291,11 +292,20 @@
             this.radioButton6.Text = "Type";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
+            // T_SNinput
+            // 
+            this.T_SNinput.Location = new System.Drawing.Point(198, 51);
+            this.T_SNinput.Multiline = true;
+            this.T_SNinput.Name = "T_SNinput";
+            this.T_SNinput.Size = new System.Drawing.Size(639, 236);
+            this.T_SNinput.TabIndex = 16;
+            // 
             // F_SN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1234, 561);
+            this.Controls.Add(this.T_SNinput);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -344,6 +354,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.TextBox T_SNinput;
     }
 }
 
