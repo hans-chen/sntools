@@ -37,297 +37,6 @@
             Indexer
             </summary>
         </member>
-        <member name="M:OpenNETCF.Desktop.Communication.SYSTEMTIME.#ctor(System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
-            <summary>
-            Initializes a new SYSTEMTIME object with the specified parameters.
-            </summary>
-            <param name="year">Year</param>
-            <param name="month">Month</param>
-            <param name="day">Day</param>
-            <param name="hour">Hour</param>
-            <param name="minute">Minute</param>
-            <param name="second">Second</param>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.PerformanceStatistics">
-            <summary>
-            A collection of performance statistics for managed applications
-            <seealso cref="T:OpenNETCF.Desktop.Communication.CFPerformanceMonitor"/>
-            </summary>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.PerformanceStatistics.GetEnumerator">
-            <summary>
-             Gets an enumerator for iterating the PerformanceStatistics collection
-             <seealso cref="T:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator"/>
-            </summary>
-            <returns>A StatisticEnumerator</returns>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistics.Count">
-            <summary>
-            Number of statistices in the collection
-            </summary>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator">
-            <summary>
-            The enumerator for the PerformanceStatistics class
-            <seealso cref="T:OpenNETCF.Desktop.Communication.PerformanceStatistics"/> 
-            </summary>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator.Reset">
-            <summary>
-            Reset
-            </summary>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator.MoveNext">
-            <summary>
-            MoveNext
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator.Current">
-            <summary>
-            The current PerformanceStatistic pointed to
-            </summary>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.PerformanceStatistic">
-            <summary>
-            A single statistic for a profiled application
-            <seealso cref="T:OpenNETCF.Desktop.Communication.CFPerformanceMonitor"/>
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Name">
-            <summary>
-            The statistic name
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Value">
-            <summary>
-            The statistic value
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.SampleCount">
-            <summary>
-            The number of samples used to determine the Min, Max and Mean
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Mean">
-            <summary>
-            Average statistic value
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Min">
-            <summary>
-            Minimum statistic value
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Max">
-            <summary>
-            Maximum statistic value
-            </summary>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.CERegistry">
-            <summary>
-            Supplies the base registry keys that access values and subkeys in the registry on the attached device.
-            </summary>
-            <remarks>This class was renamed from its previous name of "Registry" to avoid naming clashes with the desktop equivalent.</remarks>
-            <seealso cref="T:Microsoft.Win32.Registry">Desktop Registry Class</seealso>
-        </member>
-        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.LocalMachine">
-            <summary>
-            Contains the configuration data for the local machine. This field reads the Windows registry base key HKEY_LOCAL_MACHINE.
-            </summary>
-        </member>
-        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.CurrentUser">
-            <summary>
-            Contains information about the current user preferences. This field reads the Windows registry base key HKEY_CURRENT_USER.
-            </summary>
-        </member>
-        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.ClassesRoot">
-            <summary>
-             Defines the types (or classes) of documents and the properties associated with those types. This field reads the Windows registry base key HKEY_CLASSES_ROOT.
-            </summary>
-        </member>
-        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.Users">
-            <summary>
-            Contains information about the default user configuration. This field reads the Windows registry base key HKEY_USERS.
-            </summary>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.CERegistryKey">
-            <summary>
-            Represents a key level node in the device-side Windows registry.
-            This class is a registry encapsulation.
-            </summary>
-            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent.
-            </remarks>
-            <seealso cref="T:Microsoft.Win32.RegistryKey">Desktop RegistryKey Class</seealso>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.ToString">
-            <summary>
-            Retrieves a string representation of this key.
-            </summary>
-            <returns>A string representing the key. If the specified key is invalid (cannot be found) then a null value is returned.</returns>
-            <exception cref="T:System.ObjectDisposedException"> The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.Close">
-            <summary>
-            Closes the key and flushes it to storage if the contents have been modified.
-            </summary>
-            <remarks>Calling this method on system keys will have no effect, since system keys should never be closed.
-            This method does nothing if you call it on an instance of <b>RegistryKey</b> that is already closed.</remarks>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.CreateSubKey(System.String)">
-            <summary>
-             Creates a new subkey or opens an existing subkey.
-             The string subKey is not case-sensitive.
-            </summary>
-            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent, therefore the return type of this method has also been changed to <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/>.</remarks>
-            <param name="subkey">Name or path of subkey to create or open.</param>
-            <returns>Returns the subkey, or null if the operation failed.</returns>
-            <exception cref="T:System.ArgumentNullException">The specified subkey is null.</exception>
-            <exception cref="T:System.ArgumentException">The length of the specified subkey is longer than the maximum length allowed (255 characters).</exception>
-            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> on which this method is being invoked is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.OpenSubKey(System.String)">
-            <summary>
-            Retrieves a subkey as read-only.
-            </summary>
-            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent, therefore the return type of this method has also been changed to <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/>.</remarks>
-            <param name="name">Name or path of subkey to open.</param>
-            <returns>The subkey requested, or null if the operation failed.</returns>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.OpenSubKey(System.String,System.Boolean)">
-            <summary>
-            Retrieves a specified subkey.
-            </summary>
-            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent, therefore the return type of this method has also been changed to <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/>.</remarks>
-            <param name="name">Name or path of subkey to open.</param>
-            <param name="writable">Set to true if you need write access to the key.</param>
-            <returns>The subkey requested, or null if the operation failed.</returns>
-            <exception cref="T:System.ArgumentNullException">name is null.</exception>
-            <exception cref="T:System.ArgumentException">The length of the specified subkey is longer than the maximum length allowed (255 characters).</exception>
-            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteSubKey(System.String)">
-            <summary>
-            Deletes the specified subkey. The string subkey is not case-sensitive.
-            </summary>
-            <param name="subkey">Name of the subkey to delete.</param>
-            <exception cref="T:System.ArgumentException">The specified subkey is not a valid reference to a registry key.</exception>
-            <exception cref="T:System.ArgumentNullException">The subkey is null.</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteSubKey(System.String,System.Boolean)">
-            <summary>
-            Deletes the specified subkey. The string subkey is not case-sensitive.
-            </summary>
-            <param name="subkey">Name of the subkey to delete.</param>
-            <param name="throwOnMissingSubKey">Indicates whether an exception should be raised if the specified subkey cannot be found.
-            If this argument is true and the specified subkey does not exist then an exception is raised.
-            If this argument is false and the specified subkey does not exist, then no action is taken</param>
-            <exception cref="T:System.ArgumentException">The specified subkey is not a valid reference to a registry key (and throwOnMissingSubKey is true).</exception>
-            <exception cref="T:System.ArgumentNullException">The subkey is null.</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteSubKeyTree(System.String)">
-            <summary>
-             Deletes a subkey and any child subkeys recursively.
-             The string subKey is not case-sensitive.
-            </summary>
-            <param name="subkey">Subkey to delete.</param>
-            <exception cref="T:System.ArgumentNullException">The subkey parameter is null.</exception>
-            <exception cref="T:System.ArgumentException">Deletion of a root hive is attempted. 
-            The subkey parameter does not match a valid registry subkey.</exception>
-            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetSubKeyNames">
-            <summary>
-            Retrieves an array of strings that contains all the subkey names.
-            </summary>
-            <returns>An array of strings that contains the names of the subkeys for the current key.</returns>
-            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetValue(System.String)">
-            <summary>
-            Retrieves the data associated with the specified value, or null if the value does not exist.
-            </summary>
-            <param name="name">Name of the value to retrieve.</param>
-            <returns>The data associated with name , or null if the value does not exist.</returns>
-            <exception cref="T:System.ArgumentException">The RegistryKey being manipulated does not exist.</exception>
-            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetValue(System.String,System.Object)">
-            <summary>
-            Retrieves the specified value, or the default value you provide if the specified value is not found. 
-            </summary>
-            <param name="name">Name of the value to retrieve.</param>
-            <param name="defaultValue">Value to return if name does not exist.</param>
-            <returns>The data associated with name, or defaultValue if name is not found.</returns>
-            <exception cref="T:System.ArgumentException">The RegistryKey being manipulated does not exist.</exception>
-            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.SetValue(System.String,System.Object)">
-            <summary>
-            Sets the specified value.
-            </summary>
-            <param name="name">Name of value to store data in.</param>
-            <param name="value">Data to store.</param>
-            <exception cref="T:System.ArgumentException">The length of the specified value is longer than the maximum length allowed (255 characters).</exception>
-            <exception cref="T:System.ArgumentNullException">value is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">The RegistryKey being set is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteValue(System.String)">
-            <summary>
-            Deletes the specified value from this key.
-            </summary>
-            <param name="name">Name of the value to delete.</param>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteValue(System.String,System.Boolean)">
-            <summary>
-            Deletes the specified value from this key.
-            </summary>
-            <param name="name">Name of the value to delete.</param>
-            <param name="throwOnMissingValue">Indicates whether an exception should be raised if the specified value cannot be found.
-            If this argument is true and the specified value does not exist then an exception is raised.
-            If this argument is false and the specified value does not exist, then no action is taken</param>
-            <exception cref="T:System.ArgumentException">name is not a valid reference to a value (and throwOnMissingValue is true) or name is null</exception>
-            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetValueNames">
-            <summary>
-            Retrieves an array of strings that contains all the value names associated with this key.
-            </summary>
-            <returns>An array of strings that contains the value names for the current key.</returns>
-            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.Dispose">
-            <summary>
-            Dispose method
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.CERegistryKey.Name">
-            <summary>
-            Retrieves the name of the key.
-            </summary>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.CERegistryKey.SubKeyCount">
-            <summary>
-            Retrieves the count of subkeys at the base level, for the current key.
-            </summary>
-            <exception cref="T:System.ObjectDisposedException"> The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="P:OpenNETCF.Desktop.Communication.CERegistryKey.ValueCount">
-            <summary>
-            Retrieves the count of values in the key.
-            </summary>
-            <exception cref="T:System.ObjectDisposedException"> The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.CERegistryKey.KeyDisposition">
-            <summary>
-            Key disposition for RegCreateKey(Ex)
-            </summary>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.CERegistryKey.KeyType">
-            <summary>
-            Key type for RegCreateKey(Ex)
-            </summary>
-        </member>
         <member name="T:OpenNETCF.Desktop.Communication.RAPIConnectedHandler">
             <summary>
             RapiConnectedHandler delegate
@@ -1226,6 +935,320 @@
             Returns the FileInformation at the specified index
             </summary>
         </member>
+        <member name="T:OpenNETCF.Desktop.Communication.CERegistry">
+            <summary>
+            Supplies the base registry keys that access values and subkeys in the registry on the attached device.
+            </summary>
+            <remarks>This class was renamed from its previous name of "Registry" to avoid naming clashes with the desktop equivalent.</remarks>
+            <seealso cref="T:Microsoft.Win32.Registry">Desktop Registry Class</seealso>
+        </member>
+        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.LocalMachine">
+            <summary>
+            Contains the configuration data for the local machine. This field reads the Windows registry base key HKEY_LOCAL_MACHINE.
+            </summary>
+        </member>
+        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.CurrentUser">
+            <summary>
+            Contains information about the current user preferences. This field reads the Windows registry base key HKEY_CURRENT_USER.
+            </summary>
+        </member>
+        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.ClassesRoot">
+            <summary>
+             Defines the types (or classes) of documents and the properties associated with those types. This field reads the Windows registry base key HKEY_CLASSES_ROOT.
+            </summary>
+        </member>
+        <member name="F:OpenNETCF.Desktop.Communication.CERegistry.Users">
+            <summary>
+            Contains information about the default user configuration. This field reads the Windows registry base key HKEY_USERS.
+            </summary>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.CERegistryKey">
+            <summary>
+            Represents a key level node in the device-side Windows registry.
+            This class is a registry encapsulation.
+            </summary>
+            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent.
+            </remarks>
+            <seealso cref="T:Microsoft.Win32.RegistryKey">Desktop RegistryKey Class</seealso>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.ToString">
+            <summary>
+            Retrieves a string representation of this key.
+            </summary>
+            <returns>A string representing the key. If the specified key is invalid (cannot be found) then a null value is returned.</returns>
+            <exception cref="T:System.ObjectDisposedException"> The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.Close">
+            <summary>
+            Closes the key and flushes it to storage if the contents have been modified.
+            </summary>
+            <remarks>Calling this method on system keys will have no effect, since system keys should never be closed.
+            This method does nothing if you call it on an instance of <b>RegistryKey</b> that is already closed.</remarks>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.CreateSubKey(System.String)">
+            <summary>
+             Creates a new subkey or opens an existing subkey.
+             The string subKey is not case-sensitive.
+            </summary>
+            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent, therefore the return type of this method has also been changed to <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/>.</remarks>
+            <param name="subkey">Name or path of subkey to create or open.</param>
+            <returns>Returns the subkey, or null if the operation failed.</returns>
+            <exception cref="T:System.ArgumentNullException">The specified subkey is null.</exception>
+            <exception cref="T:System.ArgumentException">The length of the specified subkey is longer than the maximum length allowed (255 characters).</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> on which this method is being invoked is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.OpenSubKey(System.String)">
+            <summary>
+            Retrieves a subkey as read-only.
+            </summary>
+            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent, therefore the return type of this method has also been changed to <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/>.</remarks>
+            <param name="name">Name or path of subkey to open.</param>
+            <returns>The subkey requested, or null if the operation failed.</returns>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.OpenSubKey(System.String,System.Boolean)">
+            <summary>
+            Retrieves a specified subkey.
+            </summary>
+            <remarks>This class was renamed from its previous name of "RegistryKey" to avoid naming clashes with the desktop equivalent, therefore the return type of this method has also been changed to <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/>.</remarks>
+            <param name="name">Name or path of subkey to open.</param>
+            <param name="writable">Set to true if you need write access to the key.</param>
+            <returns>The subkey requested, or null if the operation failed.</returns>
+            <exception cref="T:System.ArgumentNullException">name is null.</exception>
+            <exception cref="T:System.ArgumentException">The length of the specified subkey is longer than the maximum length allowed (255 characters).</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteSubKey(System.String)">
+            <summary>
+            Deletes the specified subkey. The string subkey is not case-sensitive.
+            </summary>
+            <param name="subkey">Name of the subkey to delete.</param>
+            <exception cref="T:System.ArgumentException">The specified subkey is not a valid reference to a registry key.</exception>
+            <exception cref="T:System.ArgumentNullException">The subkey is null.</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteSubKey(System.String,System.Boolean)">
+            <summary>
+            Deletes the specified subkey. The string subkey is not case-sensitive.
+            </summary>
+            <param name="subkey">Name of the subkey to delete.</param>
+            <param name="throwOnMissingSubKey">Indicates whether an exception should be raised if the specified subkey cannot be found.
+            If this argument is true and the specified subkey does not exist then an exception is raised.
+            If this argument is false and the specified subkey does not exist, then no action is taken</param>
+            <exception cref="T:System.ArgumentException">The specified subkey is not a valid reference to a registry key (and throwOnMissingSubKey is true).</exception>
+            <exception cref="T:System.ArgumentNullException">The subkey is null.</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteSubKeyTree(System.String)">
+            <summary>
+             Deletes a subkey and any child subkeys recursively.
+             The string subKey is not case-sensitive.
+            </summary>
+            <param name="subkey">Subkey to delete.</param>
+            <exception cref="T:System.ArgumentNullException">The subkey parameter is null.</exception>
+            <exception cref="T:System.ArgumentException">Deletion of a root hive is attempted. 
+            The subkey parameter does not match a valid registry subkey.</exception>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetSubKeyNames">
+            <summary>
+            Retrieves an array of strings that contains all the subkey names.
+            </summary>
+            <returns>An array of strings that contains the names of the subkeys for the current key.</returns>
+            <exception cref="T:System.ObjectDisposedException">The <see cref="T:OpenNETCF.Desktop.Communication.CERegistryKey"/> being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetValue(System.String)">
+            <summary>
+            Retrieves the data associated with the specified value, or null if the value does not exist.
+            </summary>
+            <param name="name">Name of the value to retrieve.</param>
+            <returns>The data associated with name , or null if the value does not exist.</returns>
+            <exception cref="T:System.ArgumentException">The RegistryKey being manipulated does not exist.</exception>
+            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetValue(System.String,System.Object)">
+            <summary>
+            Retrieves the specified value, or the default value you provide if the specified value is not found. 
+            </summary>
+            <param name="name">Name of the value to retrieve.</param>
+            <param name="defaultValue">Value to return if name does not exist.</param>
+            <returns>The data associated with name, or defaultValue if name is not found.</returns>
+            <exception cref="T:System.ArgumentException">The RegistryKey being manipulated does not exist.</exception>
+            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.SetValue(System.String,System.Object)">
+            <summary>
+            Sets the specified value.
+            </summary>
+            <param name="name">Name of value to store data in.</param>
+            <param name="value">Data to store.</param>
+            <exception cref="T:System.ArgumentException">The length of the specified value is longer than the maximum length allowed (255 characters).</exception>
+            <exception cref="T:System.ArgumentNullException">value is null.</exception>
+            <exception cref="T:System.ObjectDisposedException">The RegistryKey being set is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteValue(System.String)">
+            <summary>
+            Deletes the specified value from this key.
+            </summary>
+            <param name="name">Name of the value to delete.</param>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.DeleteValue(System.String,System.Boolean)">
+            <summary>
+            Deletes the specified value from this key.
+            </summary>
+            <param name="name">Name of the value to delete.</param>
+            <param name="throwOnMissingValue">Indicates whether an exception should be raised if the specified value cannot be found.
+            If this argument is true and the specified value does not exist then an exception is raised.
+            If this argument is false and the specified value does not exist, then no action is taken</param>
+            <exception cref="T:System.ArgumentException">name is not a valid reference to a value (and throwOnMissingValue is true) or name is null</exception>
+            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.GetValueNames">
+            <summary>
+            Retrieves an array of strings that contains all the value names associated with this key.
+            </summary>
+            <returns>An array of strings that contains the value names for the current key.</returns>
+            <exception cref="T:System.ObjectDisposedException">The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CERegistryKey.Dispose">
+            <summary>
+            Dispose method
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.CERegistryKey.Name">
+            <summary>
+            Retrieves the name of the key.
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.CERegistryKey.SubKeyCount">
+            <summary>
+            Retrieves the count of subkeys at the base level, for the current key.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException"> The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.CERegistryKey.ValueCount">
+            <summary>
+            Retrieves the count of values in the key.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException"> The RegistryKey being manipulated is closed (closed keys cannot be accessed).</exception>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.CERegistryKey.KeyDisposition">
+            <summary>
+            Key disposition for RegCreateKey(Ex)
+            </summary>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.CERegistryKey.KeyType">
+            <summary>
+            Key type for RegCreateKey(Ex)
+            </summary>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.PerformanceStatistics">
+            <summary>
+            A collection of performance statistics for managed applications
+            <seealso cref="T:OpenNETCF.Desktop.Communication.CFPerformanceMonitor"/>
+            </summary>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.PerformanceStatistics.GetEnumerator">
+            <summary>
+             Gets an enumerator for iterating the PerformanceStatistics collection
+             <seealso cref="T:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator"/>
+            </summary>
+            <returns>A StatisticEnumerator</returns>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistics.Count">
+            <summary>
+            Number of statistices in the collection
+            </summary>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator">
+            <summary>
+            The enumerator for the PerformanceStatistics class
+            <seealso cref="T:OpenNETCF.Desktop.Communication.PerformanceStatistics"/> 
+            </summary>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator.Reset">
+            <summary>
+            Reset
+            </summary>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator.MoveNext">
+            <summary>
+            MoveNext
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistics.StatisticEnumerator.Current">
+            <summary>
+            The current PerformanceStatistic pointed to
+            </summary>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.PerformanceStatistic">
+            <summary>
+            A single statistic for a profiled application
+            <seealso cref="T:OpenNETCF.Desktop.Communication.CFPerformanceMonitor"/>
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Name">
+            <summary>
+            The statistic name
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Value">
+            <summary>
+            The statistic value
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.SampleCount">
+            <summary>
+            The number of samples used to determine the Min, Max and Mean
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Mean">
+            <summary>
+            Average statistic value
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Min">
+            <summary>
+            Minimum statistic value
+            </summary>
+        </member>
+        <member name="P:OpenNETCF.Desktop.Communication.PerformanceStatistic.Max">
+            <summary>
+            Maximum statistic value
+            </summary>
+        </member>
+        <member name="T:OpenNETCF.Desktop.Communication.CFPerformanceMonitor">
+            <summary>
+            This class can be used to generate and capture performance statistics
+            from .NET Compact Framework applications run on a connected device.
+            </summary>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CFPerformanceMonitor.EnableProfiling">
+            <summary>
+            This method informs the device to begin profiling all managed applications
+            </summary>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CFPerformanceMonitor.DisableProfiling">
+            <summary>
+            This method informs the device to stop profiling all managed applications
+            </summary>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.CFPerformanceMonitor.GetCurrentStatistics">
+            <summary>
+            Retrieves the statistics for the last profiled managed application
+            <seealso cref="T:OpenNETCF.Desktop.Communication.PerformanceStatistics"/>
+            </summary>
+            <returns>Profile statistics</returns>
+        </member>
+        <member name="M:OpenNETCF.Desktop.Communication.SYSTEMTIME.#ctor(System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Initializes a new SYSTEMTIME object with the specified parameters.
+            </summary>
+            <param name="year">Year</param>
+            <param name="month">Month</param>
+            <param name="day">Day</param>
+            <param name="hour">Hour</param>
+            <param name="minute">Minute</param>
+            <param name="second">Second</param>
+        </member>
         <member name="T:OpenNETCF.Desktop.Communication.ActiveHandler">
             <summary>
             ActiveHandler delegate
@@ -1382,29 +1405,6 @@
             <summary>
             Shown when an ActiveSync error occurs
             </summary>
-        </member>
-        <member name="T:OpenNETCF.Desktop.Communication.CFPerformanceMonitor">
-            <summary>
-            This class can be used to generate and capture performance statistics
-            from .NET Compact Framework applications run on a connected device.
-            </summary>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CFPerformanceMonitor.EnableProfiling">
-            <summary>
-            This method informs the device to begin profiling all managed applications
-            </summary>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CFPerformanceMonitor.DisableProfiling">
-            <summary>
-            This method informs the device to stop profiling all managed applications
-            </summary>
-        </member>
-        <member name="M:OpenNETCF.Desktop.Communication.CFPerformanceMonitor.GetCurrentStatistics">
-            <summary>
-            Retrieves the statistics for the last profiled managed application
-            <seealso cref="T:OpenNETCF.Desktop.Communication.PerformanceStatistics"/>
-            </summary>
-            <returns>Profile statistics</returns>
         </member>
     </members>
 </doc>

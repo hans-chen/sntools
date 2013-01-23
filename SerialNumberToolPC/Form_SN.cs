@@ -19,16 +19,9 @@ namespace SerialNumberInput
         Hashtable hs_product = new Hashtable();
         Hashtable hs_month = new Hashtable();
 
-        string[] s_serialnumber = null;
-
         string[] snfiles = Directory.GetFiles(".\\NLSN\\", "*.txt");
 
         int n_snfileindex = 0;
-
-        int iProductCodeLength = 2;
-        int iYearLength = 1;
-        int iMonthLength = 1;
-        int iSerialLenth = 5;
 
         public F_SN()
         {
@@ -78,12 +71,12 @@ namespace SerialNumberInput
 
             if (snfiles.Length > 0)
             {
-                T_Info.Clear();
-                T_Info.AppendText(@"There are " + snfiles.Length.ToString() + @" SN Files");
+                tboxInfo.Clear();
+                tboxInfo.AppendText(@"There are " + snfiles.Length.ToString() + @" SN Files");
             }
             else
             {
-                T_Info.AppendText("There is no SN files!\n");
+                tboxInfo.AppendText("There is no SN files!\n");
             }
         }
 
@@ -91,10 +84,16 @@ namespace SerialNumberInput
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         // Activate an application window.
-        [DllImport("USER32.DLL")]
+        [DllImport("user32.DLL")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        [DllImport("USER32.DLL")]
+        [DllImport("user32.DLL")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.DLL")]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+
+        [DllImport("user32.DLL")]
         public static extern int GetCursorPos(out Point point);
 
         [DllImport("msvcrt.dll")]
@@ -121,65 +120,84 @@ namespace SerialNumberInput
             IntPtr lpInitData // 任意的打印机数据 
             );
 
-        private void B_Open_Click(object sender, EventArgs e)
-        {
-            ReadSN();
-        }
-
         private void B_SimInput_Click(object sender, EventArgs e)
         {
-            IntPtr ERPHandle = FindWindow("ThunderRT6FormDC", "050 Fulfillment - Exact");
+            string[] aryString = (!String.IsNullOrEmpty(T_SNinput.Text.Trim())) ? T_SNinput.Lines : null;
 
-            // Verify that Calculator is a running process.
-            if (ERPHandle == IntPtr.Zero)
+            IntPtr handleExact = IntPtr.Zero;
+            IntPtr handleCurrent = IntPtr.Zero;
+            StringBuilder strWinTitle = new StringBuilder(256);
+
+            handleExact = FindWindow("Notepad++", "*new  2 - Notepad++");
+
+            if (radioFullfill.Checked)
             {
-                ERPHandle = FindWindow("ThunderRT6FormDC", "050 Receipts - Exact");
-
-                if (ERPHandle == IntPtr.Zero)
-                {
-                    MessageBox.Show("Can not open Exact Fulfillment or Receipt window!");
-
-                    return;
-                }
+                handleExact = FindWindow("ThunderRT6FormDC", "050 Fulfillment - Exact");
             }
-//            IntPtr ERPHandle = FindWindow("ThunderRT6FormDC", "050 Create: Serial number - Exact");
-            
-            foreach (DataGridViewRow s in DG_SNList.Rows)
+            else if (radioReceipt.Checked)
+            {
+                handleExact = FindWindow("ThunderRT6FormDC", "050 Receipts - Exact");
+            }
+            else if (radioCounts.Checked)
+            {
+                handleExact = FindWindow("ThunderRT6FormDC", "050 Create: Serial number - Exact");
+            }
+
+            if (handleExact == IntPtr.Zero)
+            {
+                tboxInfo.AppendText("Can't find Exact window!\n");
+                return;
+            }
+            else
             {
                 try
                 {
-                    SetForegroundWindow(ERPHandle);
+                    SetForegroundWindow(handleExact);
                 }
                 catch (Exception)
                 {
+                    tboxInfo.AppendText("Can't find Exact window!\n");
                     return;
                 }
-                
+            }
+            
+            foreach (string s in aryString)
+            {
+                handleCurrent = GetForegroundWindow();
+
+                if (GetWindowText(handleCurrent, strWinTitle, 256) == 0)
+                {
+                    tboxInfo.AppendText("Unknown window!\n");
+                    return;
+                }
+                else if (!(radioCounts.Checked && strWinTitle.ToString() == "050 Create: Serial number - Exact") && (handleExact != handleCurrent) )
+                {
+                    tboxInfo.AppendText("Stopped by switch window!\n");
+                    tboxInfo.AppendText(strWinTitle.ToString());
+                    return;
+                }
+
+                if (s.Length == 0)
+                {
+                    continue;
+                }
 
                 //GetColor();
 
-                SendKeys.SendWait(s.Cells[0].Value.ToString());
-
+                SendKeys.SendWait(s);
                 Thread.Sleep(500);
-
                 SendKeys.SendWait("{ENTER}");
-
                 Thread.Sleep(2000);
 
-//                SendKeys.SendWait("{ENTER}");
-
-//                Thread.Sleep(500);
+                // inputting for inventory counts, need an extra enter to active inputting window
+                if (radioCounts.Checked)
+                {
+                    SendKeys.SendWait("{ENTER}");
+                    Thread.Sleep(500);
+                }
             }
-        }
 
-        private void B_PrevFile_Click(object sender, EventArgs e)
-        {
-            SwitchSNFile("Prev");
-        }
-
-        private void B_NextFile_Click(object sender, EventArgs e)
-        {
-            SwitchSNFile("Next");
+            tboxInfo.AppendText("Serial numbers inputted completely!");
         }
 
         private int SwitchSNFile(string d)
@@ -206,45 +224,14 @@ namespace SerialNumberInput
         {
             string s_filename = @".\NLSN\" + E_SNFile.Text + @".txt";
 
-            DG_SNList.Rows.Clear();
-
             if (File.Exists(s_filename))
             {
-
-                s_serialnumber = File.ReadAllLines(s_filename);
-
+                T_SNinput.Text = File.ReadAllText(s_filename);
             }
             else
             {
                 MessageBox.Show("Can not open serial number file!");
                 return;
-            }
-
-            foreach (string s in s_serialnumber)
-            {
-                if (hs_product.ContainsKey(s.Substring(0, iProductCodeLength)))
-                {
-
-                    try
-                    {
-                        DG_SNList.Rows.Add(s,
-                            hs_product[s.Substring(0, iProductCodeLength)],
-                            int.Parse(s.Substring(iProductCodeLength, iYearLength)) + 2010,
-                            hs_month[s.Substring(iProductCodeLength + iYearLength, iMonthLength)],
-                            s.Substring(iProductCodeLength + iYearLength + iMonthLength + iSerialLenth));
-
-                    }
-                    catch (Exception)
-                    {
-                        DG_SNList.Rows.Add(s, "Unknown");
-                    }
-                }
-                else
-                {
-                    DG_SNList.Rows.Add(s, "Unknown");
-                }
-
-                DG_SNList.Update();
             }
 
             UpdateInfo();
@@ -317,14 +304,13 @@ namespace SerialNumberInput
 
         private void UpdateInfo()
         {
-            T_Info.Clear();
-            T_Info.AppendText("SN file opened: " + E_SNFile.Text + "\n");
-            T_Info.AppendText("Serial numbers: " + DG_SNList.Rows.GetRowCount(DataGridViewElementStates.None).ToString());
+            tboxInfo.Clear();
+            tboxInfo.AppendText("Serial numbers: " + T_SNinput.Lines.Length.ToString() + "\n");
         }
 
         private void B_GetFromPT_Click(object sender, EventArgs e)
         {
-            T_Info.Clear();
+            tboxInfo.Clear();
 
             RAPI ptapi = new RAPI();
 
@@ -336,16 +322,21 @@ namespace SerialNumberInput
             {
                 ptapi.CopyFileFromDevice(@".\NLSN\" + f.FileName, @"\NLSN\" + f.FileName, true);
 
-                T_Info.AppendText(f.FileName + "\n");
+                tboxInfo.AppendText(f.FileName + "\n");
             }
 
-            T_Info.AppendText("Copied " + ptfiles.Count.ToString() + " SN files.\n");
+            tboxInfo.AppendText("Copied " + ptfiles.Count.ToString() + " SN files.\n");
 
             ptapi.Disconnect();
 
             ptapi.Dispose();
 
             snfiles = Directory.GetFiles(@".\NLSN\", "*.txt");
+        }
+
+        private void T_SNinput_TextChanged(object sender, EventArgs e)
+        {
+            UpdateInfo();
         }
 
         //http://msdn.microsoft.com/zh-cn/library/ms171548.aspx
