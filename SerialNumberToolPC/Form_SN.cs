@@ -122,13 +122,14 @@ namespace SerialNumberInput
 
         private void B_SimInput_Click(object sender, EventArgs e)
         {
-            string[] aryString = (!String.IsNullOrEmpty(T_SNinput.Text.Trim())) ? T_SNinput.Lines : null;
+            string[] strSN = (!String.IsNullOrEmpty(T_SNinput.Text.Trim())) ? T_SNinput.Lines : null;
 
             IntPtr handleExact = IntPtr.Zero;
             IntPtr handleCurrent = IntPtr.Zero;
             StringBuilder strWinTitle = new StringBuilder(256);
 
-            handleExact = FindWindow("Notepad++", "*new  2 - Notepad++");
+            //testing window
+            //handleExact = FindWindow("Notepad++", "*new  2 - Notepad++");
 
             if (radioFullfill.Checked)
             {
@@ -141,6 +142,11 @@ namespace SerialNumberInput
             else if (radioCounts.Checked)
             {
                 handleExact = FindWindow("ThunderRT6FormDC", "050 Create: Serial number - Exact");
+            }
+            else
+            {
+                MessageBox.Show("Please choose input target from To...");
+                return; //comment this line for testing to notepad
             }
 
             if (handleExact == IntPtr.Zero)
@@ -161,7 +167,7 @@ namespace SerialNumberInput
                 }
             }
             
-            foreach (string s in aryString)
+            foreach (string s in strSN)
             {
                 handleCurrent = GetForegroundWindow();
 
@@ -183,8 +189,16 @@ namespace SerialNumberInput
                 }
 
                 //GetColor();
-
-                SendKeys.SendWait(s);
+                if (radioTypein.Checked)
+                {
+                    SendKeys.SendWait(s);
+                }
+                else if (radioPaste.Checked)
+                {
+                    Clipboard.SetDataObject(s);
+                    SendKeys.SendWait("^(v)");
+                }
+                
                 Thread.Sleep(500);
                 SendKeys.SendWait("{ENTER}");
                 Thread.Sleep(2000);
@@ -197,7 +211,7 @@ namespace SerialNumberInput
                 }
             }
 
-            tboxInfo.AppendText("Serial numbers inputted completely!");
+            tboxInfo.AppendText("Completely!");
         }
 
         private int SwitchSNFile(string d)
@@ -234,7 +248,7 @@ namespace SerialNumberInput
                 return;
             }
 
-            UpdateInfo();
+            updateInfo();
         }
 
         private void GetColor()
@@ -291,7 +305,7 @@ namespace SerialNumberInput
 
         private void DG_SNList_UDRow(object sender, DataGridViewRowEventArgs e)
         {
-            UpdateInfo();
+            updateInfo();
         }
 
         private void E_SNFileKP(object sender, KeyPressEventArgs e)
@@ -302,10 +316,16 @@ namespace SerialNumberInput
             }
         }
 
-        private void UpdateInfo()
+        private void updateInfo(string s)
         {
             tboxInfo.Clear();
-            tboxInfo.AppendText("Serial numbers: " + T_SNinput.Lines.Length.ToString() + "\n");
+            tboxInfo.AppendText("SN: " + T_SNinput.Lines.Length.ToString() + "\n");
+            tboxInfo.AppendText(s);
+        }
+
+        private void updateInfo()
+        {
+            updateInfo("");
         }
 
         private void B_GetFromPT_Click(object sender, EventArgs e)
@@ -336,7 +356,7 @@ namespace SerialNumberInput
 
         private void T_SNinput_TextChanged(object sender, EventArgs e)
         {
-            UpdateInfo();
+            updateInfo();
         }
 
         //http://msdn.microsoft.com/zh-cn/library/ms171548.aspx
