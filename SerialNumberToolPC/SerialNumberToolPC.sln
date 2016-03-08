@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialNumberToolPC", "SerialNumberToolPC.csproj", "{30A45A9D-8E72-4997-9709-F2260E517BA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNETCF.Desktop.Communication", "..\OpenNETCF.Desktop.Communication\OpenNETCF.Desktop.Communication.csproj", "{60FD337B-8EB5-4E20-A951-6EBB09CCE442}"

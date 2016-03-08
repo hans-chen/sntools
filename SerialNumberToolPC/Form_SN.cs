@@ -133,15 +133,15 @@ namespace SerialNumberInput
 
             if (radioFullfill.Checked)
             {
-                handleExact = FindWindow("ThunderRT6FormDC", "050 Fulfillment - Exact");
+                handleExact = FindWindow("ThunderRT6FormDC", "050 Leveringen - Exact");
             }
             else if (radioReceipt.Checked)
             {
-                handleExact = FindWindow("ThunderRT6FormDC", "050 Receipts - Exact");
+                handleExact = FindWindow("ThunderRT6FormDC", "050 Ontvangsten - Exact");
             }
             else if (radioCounts.Checked)
             {
-                handleExact = FindWindow("ThunderRT6FormDC", "050 Create: Serial number - Exact");
+                handleExact = FindWindow("ThunderRT6FormDC", "050 Aanmaken: Serienummer - Exact");
             }
             else
             {
@@ -176,7 +176,7 @@ namespace SerialNumberInput
                     tboxInfo.AppendText("Unknown window!\n");
                     return;
                 }
-                else if (!(radioCounts.Checked && strWinTitle.ToString() == "050 Create: Serial number - Exact") && (handleExact != handleCurrent) )
+                else if (!(radioCounts.Checked && strWinTitle.ToString() == "050 Aanmaken: Serienummer - Exact") && (handleExact != handleCurrent))
                 {
                     tboxInfo.AppendText("Stopped by switch window!\n");
                     tboxInfo.AppendText(strWinTitle.ToString());
