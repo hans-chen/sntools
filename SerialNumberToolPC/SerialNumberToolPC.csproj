@@ -114,12 +114,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OpenNETCF.Desktop.Communication\OpenNETCF.Desktop.Communication.csproj">
-      <Project>{60FD337B-8EB5-4E20-A951-6EBB09CCE442}</Project>
-      <Name>OpenNETCF.Desktop.Communication</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

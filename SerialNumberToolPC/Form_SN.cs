@@ -1,4 +1,5 @@
 ﻿using System;
+//using OpenNETCF.Desktop.Communication;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ using System.Threading;
 using System.Timers;
 using System.Media;
 using System.Reflection;
-using OpenNETCF.Desktop.Communication;
+
 
 namespace SerialNumberInput
 {
