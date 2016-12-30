@@ -178,7 +178,7 @@ namespace SerialNumberInput
 
             tboxInfo.AppendText("X1=" + caretX1.ToString() + ", Y1=" + caretY1.ToString() + "\n");
 
-             foreach (string s in strSN)
+            foreach (string s in strSN)
             {
                 handleCurrent = GetForegroundWindow();
 
@@ -187,7 +187,8 @@ namespace SerialNumberInput
                     tboxInfo.AppendText("Unknown window!\n");
                     return;
                 }
-                else if (!radioCounts.Checked && (handleExact != handleCurrent))
+                else if (strWinTitle.ToString() != ConfigurationManager.AppSettings.Get("windowCounts")
+                         && (handleExact != handleCurrent))
                 {
                     //since in counts window the handle of window will be changed every serial number so have to ignore its checking.
                     tboxInfo.AppendText("Switching window!\n");
