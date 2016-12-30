@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Timers;
 using System.Media;
+using System.Reflection;
 using OpenNETCF.Desktop.Communication;
 
 namespace SerialNumberInput
@@ -20,6 +21,8 @@ namespace SerialNumberInput
         public F_SN()
         {
             InitializeComponent();
+
+            L_Version.Text = Assembly.GetEntryAssembly().GetName().Version + "; Hans @ Newland Europe 2016";
         }
         
 

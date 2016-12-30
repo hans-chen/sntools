@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.B_SimInput = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.L_Version = new System.Windows.Forms.Label();
             this.tboxInfo = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioCounts = new System.Windows.Forms.RadioButton();
@@ -58,17 +58,16 @@
             this.B_SimInput.UseVisualStyleBackColor = true;
             this.B_SimInput.Click += new System.EventHandler(this.B_SimInput_Click);
             // 
-            // label1
+            // L_Version
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(1056, 586);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Hans @ Newland Europe, 2016";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.L_Version.AutoSize = true;
+            this.L_Version.Font = new System.Drawing.Font("Calibri", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.L_Version.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.L_Version.Location = new System.Drawing.Point(985, 586);
+            this.L_Version.Name = "L_Version";
+            this.L_Version.Size = new System.Drawing.Size(0, 13);
+            this.L_Version.TabIndex = 5;
+            this.L_Version.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // tboxInfo
             // 
@@ -220,7 +219,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.tboxInfo);
             this.Controls.Add(this.L_SNFile);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.L_Version);
             this.Controls.Add(this.B_SimInput);
             this.Name = "F_SN";
             this.Text = "Serial Number Tool";
@@ -236,7 +235,7 @@
         #endregion
 
         private System.Windows.Forms.Button B_SimInput;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label L_Version;
         private System.Windows.Forms.TextBox tboxInfo;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioFullfill;
