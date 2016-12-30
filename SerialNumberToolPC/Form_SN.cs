@@ -1,5 +1,4 @@
 ﻿using System;
-//using OpenNETCF.Desktop.Communication;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +12,8 @@ using System.Threading;
 using System.Timers;
 using System.Media;
 using System.Reflection;
-
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace SerialNumberInput
 {
@@ -24,6 +24,10 @@ namespace SerialNumberInput
             InitializeComponent();
 
             L_Version.Text = Assembly.GetEntryAssembly().GetName().Version + "; Hans @ Newland Europe 2016";
+
+            radioFullfill.Text = ConfigurationManager.AppSettings.Get("windowFullfill");
+            radioReceipt.Text = ConfigurationManager.AppSettings.Get("windowReceipt");
+            radioCounts.Text = ConfigurationManager.AppSettings.Get("windowCounts");
         }
         
 
@@ -119,22 +123,26 @@ namespace SerialNumberInput
             IntPtr handleCurrent = IntPtr.Zero;
             StringBuilder strWinTitle = new StringBuilder(256);
 
+            //caret positions
             int caretX1 = 0;
             int caretY1 = 0;
             int caretX2 = 0;
             int caretY2 = 0;
 
+            //load configurations
+
+
             if (radioFullfill.Checked)
             {
-                handleExact = FindWindow("ThunderRT6FormDC", "050 Leveringen - Exact");
+                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowDeliveries"));
             }
             else if (radioReceipt.Checked)
             {
-                handleExact = FindWindow("ThunderRT6FormDC", "050 Ontvangsten - Exact");
+                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowPurchases"));
             }
             else if (radioCounts.Checked)
             {
-                handleExact = FindWindow("ThunderRT6FormDC", "050 Aanmaken: Serienummer - Exact");
+                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowMaintenance"));
             }
             else
             {
@@ -179,7 +187,7 @@ namespace SerialNumberInput
                     tboxInfo.AppendText("Unknown window!\n");
                     return;
                 }
-                else if (!(radioCounts.Checked && strWinTitle.ToString() == "050 Aanmaken: Serienummer - Exact") && (handleExact != handleCurrent))
+                else if (!(radioCounts.Checked && strWinTitle.ToString() == ConfigurationManager.AppSettings.Get("windowMaintenance")) && (handleExact != handleCurrent))
                 {
                     tboxInfo.AppendText("Stopped by switch window!\n");
                     tboxInfo.AppendText(strWinTitle.ToString());

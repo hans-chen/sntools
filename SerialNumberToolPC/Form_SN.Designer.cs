@@ -117,9 +117,8 @@
             this.radioFullfill.AutoSize = true;
             this.radioFullfill.Location = new System.Drawing.Point(18, 34);
             this.radioFullfill.Name = "radioFullfill";
-            this.radioFullfill.Size = new System.Drawing.Size(135, 17);
+            this.radioFullfill.Size = new System.Drawing.Size(14, 13);
             this.radioFullfill.TabIndex = 0;
-            this.radioFullfill.Text = "050 Leveringen - Exact";
             this.radioFullfill.UseVisualStyleBackColor = true;
             // 
             // groupBox2
