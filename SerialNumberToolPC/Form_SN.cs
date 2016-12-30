@@ -134,15 +134,15 @@ namespace SerialNumberInput
 
             if (radioFullfill.Checked)
             {
-                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowDeliveries"));
+                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowFullfill"));
             }
             else if (radioReceipt.Checked)
             {
-                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowPurchases"));
+                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowReceipt"));
             }
             else if (radioCounts.Checked)
             {
-                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowMaintenance"));
+                handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowCounts"));
             }
             else
             {
@@ -187,9 +187,12 @@ namespace SerialNumberInput
                     tboxInfo.AppendText("Unknown window!\n");
                     return;
                 }
-                else if (!(radioCounts.Checked && strWinTitle.ToString() == ConfigurationManager.AppSettings.Get("windowMaintenance")) && (handleExact != handleCurrent))
+                else if (!radioCounts.Checked && (handleExact != handleCurrent))
                 {
-                    tboxInfo.AppendText("Stopped by switch window!\n");
+                    //since in counts window the handle of window will be changed every serial number so have to ignore its checking.
+                    tboxInfo.AppendText("Switching window!\n");
+                    tboxInfo.AppendText("handleExact=" + handleExact.ToString() + "\n");
+                    tboxInfo.AppendText("handleCurrent=" + handleCurrent.ToString() + "\n");
                     tboxInfo.AppendText(strWinTitle.ToString());
                     return;
                 }
