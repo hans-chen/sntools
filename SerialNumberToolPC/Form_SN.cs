@@ -44,32 +44,7 @@ namespace SerialNumberInput
         [DllImport("user32.DLL")]
         static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
-        [DllImport("user32.DLL")]
-        public static extern int GetCursorPos(out Point point);
 
-        [DllImport("msvcrt.dll")]
-        static extern bool system(string str);
-
-        [ DllImport ( "gdi32.dll" ) ] 
-        private static extern bool BitBlt ( 
-            IntPtr hdcDest, // 目标设备的句柄 
-            int nXDest, // 目标对象的左上角的X坐标 
-            int nYDest, // 目标对象的左上角的X坐标 
-            int nWidth, // 目标对象的矩形的宽度 
-            int nHeight, // 目标对象的矩形的长度 
-            IntPtr hdcSrc, // 源设备的句柄 
-            int nXSrc, // 源对象的左上角的X坐标 
-            int nYSrc, // 源对象的左上角的X坐标 
-            int dwRop // 光栅的操作值 
-            );
-
-        [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateDC(
-            string lpszDriver, // 驱动名称 
-            string lpszDevice, // 设备名称 
-            string lpszOutput, // 无用，可以设定位"NULL" 
-            IntPtr lpInitData // 任意的打印机数据 
-            );
         /*- Retrieves information about active window or any specific GUI thread -*/
         [DllImport("user32.dll", EntryPoint = "GetGUIThreadInfo")]
         public static extern bool GetGUIThreadInfo(uint tId, out GUITHREADINFO threadInfo);
@@ -100,7 +75,7 @@ namespace SerialNumberInput
         GUITHREADINFO guiInfo;                     // To store GUI Thread Information
         Point caretPosition;                     // To store Caret Position  
 
-        public void GetCaretPosition(ref int cx, ref int cy)
+        public void getCaretPosition(ref int cx, ref int cy)
         {
             guiInfo = new GUITHREADINFO();
             guiInfo.cbSize = (uint)Marshal.SizeOf(guiInfo);
@@ -129,9 +104,6 @@ namespace SerialNumberInput
             int caretX2 = 0;
             int caretY2 = 0;
 
-            //load configurations
-
-
             if (radioFullfill.Checked)
             {
                 handleExact = FindWindow(ConfigurationManager.AppSettings.Get("windowClass"), ConfigurationManager.AppSettings.Get("windowFullfill"));
@@ -147,7 +119,7 @@ namespace SerialNumberInput
             else
             {
                 MessageBox.Show("Please choose input target from To...");
-                return; //comment this line for testing to notepad
+                return;
             }
 
             //testing window
@@ -155,7 +127,7 @@ namespace SerialNumberInput
 
             if (handleExact == IntPtr.Zero)
             {
-                tboxInfo.AppendText("Can't find Exact window!\n");
+                updateLog("Can't find Exact!");
 
                 return;
             }
@@ -167,16 +139,16 @@ namespace SerialNumberInput
                 }
                 catch (Exception)
                 {
-                    tboxInfo.AppendText("Can't find Exact window!\n");
+                    updateLog("Can't find Exact!");
                     return;
                 }
             }
 
             //log the caret postion from beginning
             Thread.Sleep(500);
-            GetCaretPosition(ref caretX1, ref caretY1);
+            getCaretPosition(ref caretX1, ref caretY1);
 
-            tboxInfo.AppendText("X1=" + caretX1.ToString() + ", Y1=" + caretY1.ToString() + "\n");
+            updateLog("X1=" + caretX1.ToString() + ", Y1=" + caretY1.ToString());
 
             foreach (string s in strSN)
             {
@@ -184,28 +156,29 @@ namespace SerialNumberInput
 
                 if (GetWindowText(handleCurrent, strWinTitle, 256) == 0)
                 {
-                    tboxInfo.AppendText("Unknown window!\n");
+                    updateLog("Unknown window!");
                     return;
                 }
                 else if (strWinTitle.ToString() != ConfigurationManager.AppSettings.Get("windowCounts")
                          && (handleExact != handleCurrent))
                 {
-                    //since in counts window the handle of window will be changed every serial number so have to ignore its checking.
-                    tboxInfo.AppendText("Switching window!\n");
-                    tboxInfo.AppendText("handleExact=" + handleExact.ToString() + "\n");
-                    tboxInfo.AppendText("handleCurrent=" + handleCurrent.ToString() + "\n");
-                    tboxInfo.AppendText(strWinTitle.ToString());
+                    //since the counts window handle will be changed every serial number so have to ignore its checking.
+                    updateLog("Switching window!", false);
+                    updateLog("handleExact=" + handleExact.ToString(), false);
+                    updateLog("handleCurrent=" + handleCurrent.ToString(), false);
+                    updateLog(strWinTitle.ToString(), false);
                     return;
                 }
 
-                GetCaretPosition(ref caretX2, ref caretY2);
-                tboxInfo.AppendText("X2=" + caretX2.ToString() + ", Y2=" + caretY2.ToString() + "\n");
+                // get new caret position which should be same X as oringinal one
+                getCaretPosition(ref caretX2, ref caretY2);
+                updateLog("X2=" + caretX2.ToString() + ", Y2=" + caretY2.ToString());
 
                 if (caretX2 != caretX1)
                 {
-                    tboxInfo.AppendText("X1=" + caretX1.ToString() + ", Y1=" + caretY1.ToString() + "\n");
-                    tboxInfo.AppendText("X2=" + caretX2.ToString() + ", Y2=" + caretY2.ToString() + "\n");
-                    tboxInfo.AppendText("Wrong caret!\n");
+                    updateLog("Wrong caret!");
+                    updateLog("X1=" + caretX1.ToString() + ", Y1=" + caretY1.ToString(), false);
+                    updateLog("X2=" + caretX2.ToString() + ", Y2=" + caretY2.ToString(), false);
 
                     SystemSounds.Beep.Play();
 
@@ -219,66 +192,62 @@ namespace SerialNumberInput
                     continue;
                 }
 
+                // emulate by keystrokes
                 if (radioTypein.Checked)
                 {
                     SendKeys.SendWait(s);
                 }
+                // emulate by clipboard and paste
                 else if (radioPaste.Checked)
                 {
-                    Clipboard.SetDataObject(s);
-                    SendKeys.SendWait("^(v)");
+                    Clipboard.SetDataObject(s); // send serial number to clipboard
+                    SendKeys.SendWait("^(v)");  // send control V to paste
                 }
                 
+                // go to next serial number
                 Thread.Sleep(500);
                 SendKeys.SendWait("{ENTER}");
                 Thread.Sleep(2000);
 
-                // inputting for inventory counts, need an extra enter to active inputting window
+                // inputting for inventory counts only, need an extra enter to active inputting window
                 if (radioCounts.Checked)
                 {
                     SendKeys.SendWait("{ENTER}");
                     Thread.Sleep(500);
                 }
 
-                T_SNdone.AppendText(s + "\n");
-                if (T_SNinput.Text.Length > T_SNinput.Lines.GetValue(0).ToString().Length)
+                // moving inputted serial number from oringial box to inputted box
+                T_SNdone.AppendText(s + "\r\n");
+
+                if (T_SNinput.Text.Length > T_SNinput.Lines.GetValue(0).ToString().Length) // the last one could be no carriage return
                     T_SNinput.Text = T_SNinput.Text.Remove(0, T_SNinput.Lines.GetValue(0).ToString().Length + 2);
                 else
                     T_SNinput.Text = "";
             }
 
-            tboxInfo.AppendText("Done!\n");
+            updateLog("Done!");
         }
 
-        private void DG_SNList_UDRow(object sender, DataGridViewRowEventArgs e)
+        private void updateLog(string s, bool clear=true)
         {
-            updateInfo();
-        }
-
-/*
-        private void E_SNFileKP(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
+            if (clear)
             {
-                ReadSN();
+                tboxLog.Clear();
+                tboxLog.AppendText("SN: " + T_SNinput.Lines.Length.ToString() + "\r\n");
+                tboxLog.AppendText("---------------------\r\n");
             }
-        }
-*/
-        private void updateInfo(string s)
-        {
-            tboxInfo.Clear();
-            tboxInfo.AppendText("SN: " + T_SNinput.Lines.Length.ToString() + "\n");
-            tboxInfo.AppendText(s);
+
+            tboxLog.AppendText(s + "\r\n");
         }
 
-        private void updateInfo()
+        private void updateLog()
         {
-            updateInfo("");
+            updateLog("");
         }
 
         private void T_SNinput_TextChanged(object sender, EventArgs e)
         {
-            updateInfo();
+            updateLog();
         }
 
         //http://msdn.microsoft.com/zh-cn/library/ms171548.aspx

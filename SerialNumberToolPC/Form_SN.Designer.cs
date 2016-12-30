@@ -30,7 +30,7 @@
         {
             this.B_SimInput = new System.Windows.Forms.Button();
             this.L_Version = new System.Windows.Forms.Label();
-            this.tboxInfo = new System.Windows.Forms.TextBox();
+            this.tboxLog = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioCounts = new System.Windows.Forms.RadioButton();
             this.radioReceipt = new System.Windows.Forms.RadioButton();
@@ -69,14 +69,14 @@
             this.L_Version.TabIndex = 5;
             this.L_Version.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
-            // tboxInfo
+            // tboxLog
             // 
-            this.tboxInfo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxInfo.Location = new System.Drawing.Point(12, 55);
-            this.tboxInfo.Multiline = true;
-            this.tboxInfo.Name = "tboxInfo";
-            this.tboxInfo.Size = new System.Drawing.Size(170, 508);
-            this.tboxInfo.TabIndex = 10;
+            this.tboxLog.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxLog.Location = new System.Drawing.Point(12, 55);
+            this.tboxLog.Multiline = true;
+            this.tboxLog.Name = "tboxLog";
+            this.tboxLog.Size = new System.Drawing.Size(170, 508);
+            this.tboxLog.TabIndex = 10;
             // 
             // groupBox3
             // 
@@ -203,7 +203,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 19);
             this.label3.TabIndex = 20;
-            this.label3.Text = "SN inputted:";
+            this.label3.Text = "SN Finished:";
             // 
             // F_SN
             // 
@@ -216,7 +216,7 @@
             this.Controls.Add(this.T_SNinput);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.tboxInfo);
+            this.Controls.Add(this.tboxLog);
             this.Controls.Add(this.L_SNFile);
             this.Controls.Add(this.L_Version);
             this.Controls.Add(this.B_SimInput);
@@ -235,7 +235,7 @@
 
         private System.Windows.Forms.Button B_SimInput;
         private System.Windows.Forms.Label L_Version;
-        private System.Windows.Forms.TextBox tboxInfo;
+        private System.Windows.Forms.TextBox tboxLog;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioFullfill;
         private System.Windows.Forms.RadioButton radioReceipt;
